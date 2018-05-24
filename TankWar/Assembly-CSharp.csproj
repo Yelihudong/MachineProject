@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\IndexUI.cs" />
      <Compile Include="Assets\Scripts\NetworkDiscoveryCustom.cs" />
      <Compile Include="Assets\Scripts\NetworkMangerCustom.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity2017.3/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
