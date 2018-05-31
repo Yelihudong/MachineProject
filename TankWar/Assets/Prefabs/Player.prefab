@@ -166,6 +166,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1790229297056582
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4796417020906096}
+  m_Layer: 0
+  m_Name: ShotPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1845806969470234
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +208,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.7380633, y: -81.12803, z: 87.3941}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4796417020906096}
   m_Father: {fileID: 4779208890715040}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -280,6 +296,19 @@ Transform:
   m_Children:
   - {fileID: 4199575419641514}
   m_Father: {fileID: 4825102397164472}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4796417020906096
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790229297056582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.4, y: -194.2, z: -6.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4199575419641514}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4825102397164472
@@ -701,6 +730,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   turret: {fileID: 4825102397164472}
+  turreRotation: 0
+  fireRate: 0.75
+  shotPos: {fileID: 4796417020906096}
+  BulletPrefab: {fileID: 1944378527036640, guid: ea1187777c8a70641b9d130fe5db904b,
+    type: 2}
 --- !u!114 &114917695006068924
 MonoBehaviour:
   m_ObjectHideFlags: 1
