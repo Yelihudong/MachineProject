@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class NetworkMangerCustom :  NetworkManager{//自定义一个NetworkManger类 处理networkmanger事务
 
+    //public GameObject playerPrefab;//这里不需要，playerPrefab就是Scene001的NetWork绑定的NetworkMangerCustom的【Player Prefab：Player】;
+
     public static void SingleGame()
     {
         singleton.StartHost(singleton.connectionConfig, 1);//单例模式同时创建一个服务器和客户端，当前的连接配置，maxContention最大连接数量
@@ -121,6 +123,20 @@ public class NetworkMangerCustom :  NetworkManager{//自定义一个NetworkMange
         }
         StartClient(matchInfo);//利用Unet传回的matchInfo启动客户端
     }
-   
+    public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        //print(234345);
+        int teamIndex = GameManager.GetInstance().GetTeamFill();//获取应该分配的组号
+        Vector3 startPos = GameManager.GetInstance().GetSpawnPosition(teamIndex);//获取出生点
+        GameObject player = Instantiate(playerPrefab, startPos, Quaternion.identity);//初始化player预制体游戏对象
+
+        //为Player的组号赋值
+        Player p = player.transform.GetComponent<Player>();
+        p.teamIndex = teamIndex;
+
+        GameManager.GetInstance().size[teamIndex]++;//该组人数++
+
+        NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
+    }
 	
 }
