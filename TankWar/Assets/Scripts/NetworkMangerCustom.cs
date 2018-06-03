@@ -128,14 +128,16 @@ public class NetworkMangerCustom :  NetworkManager{//自定义一个NetworkMange
         //print(234345);
         int teamIndex = GameManager.GetInstance().GetTeamFill();//获取应该分配的组号
         Vector3 startPos = GameManager.GetInstance().GetSpawnPosition(teamIndex);//获取出生点
-        GameObject player = Instantiate(playerPrefab, startPos, Quaternion.identity);//初始化player预制体游戏对象
+        GameObject player = Instantiate(playerPrefab, startPos, Quaternion.identity);//初始化player预制体游戏对象(使用默认的预制体在服务器创建玩家）
 
         //为Player的组号赋值
         Player p = player.transform.GetComponent<Player>();
         p.teamIndex = teamIndex;
 
         GameManager.GetInstance().size[teamIndex]++;//该组人数++
+        GameManager.GetInstance().ui.OnTeamSizeChanged(SyncListInt.Operation.OP_DIRTY, teamIndex);
 
+        //告诉server是哪个玩家id连接的：连接，预制体，连接id
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
     }
 	

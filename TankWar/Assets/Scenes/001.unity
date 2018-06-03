@@ -1134,7 +1134,6 @@ MonoBehaviour:
   matchSize: 12
   isNetworkActive: 0
   matchMaker: {fileID: 0}
-  playerPrefab: {fileID: 0}
 --- !u!114 &1428718226
 MonoBehaviour:
   m_ObjectHideFlags: 0
