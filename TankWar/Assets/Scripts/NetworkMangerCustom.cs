@@ -5,18 +5,30 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 using UnityEngine.SceneManagement;
 
+public enum NetworkMode
+{
+    Single,
+    Lan,
+    Net
+}
+
+
 public class NetworkMangerCustom :  NetworkManager{//自定义一个NetworkManger类 处理networkmanger事务
 
-    //public GameObject playerPrefab;//这里不需要，playerPrefab就是Scene001的NetWork绑定的NetworkMangerCustom的【Player Prefab：Player】;
+    public static NetworkMode MyMode;
 
     public static void SingleGame()
     {
+        MyMode = NetworkMode.Single;
         singleton.StartHost(singleton.connectionConfig, 1);//单例模式同时创建一个服务器和客户端，当前的连接配置，maxContention最大连接数量
     }
     public static void LanGame()
     {
+
         //singleton 当前networkManger的单例模式
+        MyMode = NetworkMode.Lan;
         singleton.StartCoroutine((singleton as NetworkMangerCustom).DiscoveryNetwork());//找不到 转换后在找
+        
     }
 
     //协程
@@ -45,6 +57,7 @@ public class NetworkMangerCustom :  NetworkManager{//自定义一个NetworkMange
 
     public static void NetGame()
     {
+        MyMode = NetworkMode.Net;
         singleton.StartMatchMaker();//牵线搭桥功能，启用Unet网络对战功能
         singleton.matchMaker.ListMatches(0, 20, "", false, 0, 0, singleton.OnMatchList);
                     //第一个参数：startpagenumber：表示第几页的list
